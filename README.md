@@ -6,7 +6,7 @@ ___
 
 #### Create starting files and folders
   ```bash
-  mkdir frontend actions components reducers store util css
+  mkdir frontend frontend/components actions reducers store util css
   touch frontend/{your_root_file}.jsx
   ```
   For `index.html`
@@ -88,6 +88,15 @@ Make changes to `package.json`
   ```
   ```bash
   npm run webpack
+  ```
+
+  # Making your entry.js
+
+  ```js
+    document.addEventListener("DOMContentLoaded", () => {
+      const root = document.getElementById('root');
+      ReactDOM.render(<h1>Hello</h1>, root);
+    })
   ```
 
 ## Check-list when making an react component
