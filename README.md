@@ -47,7 +47,7 @@ ___
 #### Set up npm
 ```bash
 npm init -y
-npm install --save webpack@3.4.1 react react-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-env lodash
+npm install --save webpack@3.9.0 react react-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-env babel-preset-es2015 redux-logger lodash
 ```
 Make changes to `package.json`
 * Change `"main": "app.jsx"` to `{your_root_file}.jsx`
