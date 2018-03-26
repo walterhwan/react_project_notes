@@ -2,16 +2,16 @@
 
 ___
 
-## Create project
+# Creating a new project
 
 #### Create starting files and folders
   ```bash
-  touch index.html
   mkdir frontend actions components reducers store util css
   touch frontend/{your_root_file}.jsx
   ```
+  For `index.html`
   ```bash
-  touch css/reset.css css/style.css
+  touch index.html css/reset.css css/style.css
   ```
   ```html
   <!-- Add `script` to index.html -->
@@ -36,7 +36,7 @@ ___
   bundle.js
   bundle.js.map
   ```
-  You can create and write the file in command line at the same time
+  You can create and write the file in terminal at the same time
   ```bash
   {
     echo 'node_modules/'
@@ -49,9 +49,9 @@ ___
 npm init -y
 npm install --save webpack@3.4.1 react react-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-env lodash
 ```
-* Make changes to `package.json`
-  * Change `"main": "app.jsx"` to `{your_root_file}.jsx`
-  * Add `"webpack": "webpack --watch"`
+Make changes to `package.json`
+* Change `"main": "app.jsx"` to `{your_root_file}.jsx`
+* Add `"webpack": "webpack --watch"`
 
 #### Set up Webpack
   ```bash
