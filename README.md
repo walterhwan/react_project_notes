@@ -50,6 +50,17 @@ You can create and write the file in terminal at the same time
   echo 'bundle.js.map'
 } >.gitignore
 ```
+or you can append to the file
+```bash
+{
+  echo node_modules/
+  echo bundle.js
+  echo bundle.js.map
+  echo .byebug_history
+  echo .DS_Store
+  echo npm-debug.log
+} >>.gitignore
+```
 #### Set up npm
 ```bash
 npm init -y
