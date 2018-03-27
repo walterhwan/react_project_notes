@@ -6,7 +6,7 @@ ___
 
 #### Create starting files and folders
 ```bash
-mkdir frontend frontend/components actions reducers store util css
+mkdir frontend frontend/components frontend/actions frontend/reducers frontend/store frontend/util css
 touch frontend/{your_root_file}.jsx
 ```
 For `index.html`
