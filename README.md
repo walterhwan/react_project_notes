@@ -96,6 +96,7 @@ module.exports = {
 npm run webpack
 ```
 
+___
 # Useful `Object#methods` and `lodash` methods TL;DR
 <!-- TODO: add use-cases and TL;DR -->
 `Object.keys`
@@ -128,17 +129,26 @@ import merge from 'lodash/merge';
 merge({}, state)
 ```
 
-# Useful Imports
+___
+# Useful imports
 
 ```js
+// required in rootReducer.js
 import { combineReducers } from 'redux';
+// required in store.js
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
+// required in object_container.jsx
 import { connect } from 'react-redux';
+// required in root.jsx
 import { Provider } from 'react-redux';
 ```
 
-# Making your store.js
+
+___
+# Redux files
+
+### Making your store.js
 
 ```js
 let configureStore = (preloadedState = {}) => (
@@ -150,7 +160,7 @@ let configureStore = (preloadedState = {}) => (
 );
 ```
 
-# Making your entry.jsx
+### Making your entry.jsx
 
 ```js
 document.addEventListener("DOMContentLoaded", () => {
@@ -159,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 ```
 
-# Generate a uniq id using `Date`
+### Generate a uniq id using `Date`
 
 ```js
 export const uniqueId = function() {
@@ -167,13 +177,9 @@ export const uniqueId = function() {
 };
 ```
 
-## Check-list when making an react component
+___
+# Check-list when making an react component
 
 <!-- TODO: complete this section -->
 1. `import React from 'react';`
 - `export default Object`
-```js
-export const createKitten = (parentId, kitten) => dispatch => (
-  CatAPIUtil.createKitten(parentId, kitten).then(kitten => dispatch(receiveCat(kitten)))
-);
-```
