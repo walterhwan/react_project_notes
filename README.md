@@ -5,6 +5,7 @@ ___
 # Creating a new project
 
 #### Create starting files and folders
+<!-- TODO: check how to use variables in bash -->
 ```bash
 mkdir frontend frontend/components frontend/actions frontend/reducers frontend/store frontend/util css
 touch frontend/{your_root_file}.jsx
@@ -90,6 +91,26 @@ module.exports = {
 npm run webpack
 ```
 
+# Useful `Object#methods` and `lodash` methods
+```js
+// TODO: add usecases and TL;DR
+Object.keys
+Object.assign
+Object.freeze
+
+import merge from 'lodash/merge';
+merge({}, state)
+```
+
+# Useful Imports
+
+```js
+import { combineReducers } from 'redux';
+import { createStore } from 'redux';
+import { connect } from 'react-redux';
+import { Provider } from 'react-redux';
+```
+
 # Making your entry.js
 
 ```js
@@ -97,6 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
   ReactDOM.render(<h1>Hello</h1>, root);
 })
+```
+
+# Generate a uniq id using `Date`
+
+```js
+export const uniqueId = function() {
+  return new Date().getTime();
+};
 ```
 
 ## Check-list when making an react component
