@@ -235,6 +235,55 @@ export const postUser = (user) => (
 );
 ```
 
+# Authentication in React
+
+Create `utils/session.js`
+```js
+export const postUser = (user) => ()
+export const postSession = (user) => ()
+export const deleteSession = () => ()
+```
+
+Create `actions/session.js`
+```js
+export const RECIEVE_CURRENT_USER = 'RECIEVE_CURRENT_USER';
+export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
+const recieveCurrentUser = (user) => {}
+const logoutCurrentUser = () => {}
+export const createNewUser = (formUser) => dispatch => {}
+export const login = (formUser) => dispatch => {}
+export const logout = () => dispatch => {}
+```
+
+Create `reducers/session.js`
+```js
+export default (state = { currentUser: null }, action) => {
+  Object.freeze(state);
+  switch (action.type) {
+    case RECIEVE_CURRENT_USER:
+      return Object.assign({}, { currentUser: action.user });
+    case LOGOUT_CURRENT_USER:
+      return { currentUser: null };
+    default:
+      return state;
+  }
+};
+```
+
+Create `components/session/signup_containers.js`
+```js
+const mapDispatchToProps = dispatch => ({
+  createNewUser: formUser => dispatch(createNewUser(formUser)),
+});
+```
+
+Create `components/session/signup.jsx`
+
+Create `components/session/login_containers.js`
+
+Create `components/session/login.jsx`
+
+
 ___
 # Check-list when making an react component
 
