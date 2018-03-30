@@ -4,6 +4,34 @@ ___
 
 # Creating a new project
 
+#### Setup Rails
+
+```bash
+rails new $project_name
+--database=postgresql # add this if using Postgres.
+--skip-turbolinks # add this to skip the turbolinks gem.
+```
+
+```ruby
+gem 'bcrypt'
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'pry-rails'
+gem 'annotate'
+gem 'jquery-rails' # (When using rails > 5.1)
+```
+
+```ruby
+bundle install
+```
+When using Rails 5.1+, modify `application.js `
+```js
+//= require rails-ujs
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+```
+
 #### Create starting files and folders
 ```bash
 # You can set variable in bash as such
@@ -64,8 +92,9 @@ or you can append to the file
 #### Set up npm
 ```bash
 npm init -y
-npm install --save webpack@3.10.1 react react-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-env babel-preset-es2015 redux-logger lodash
+npm install --save webpack@3.10.1 react react-dom react-router-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-env babel-preset-es2015 redux-logger lodash
 ```
+
 Make changes to `package.json`
 * Change `"main": "app.jsx"` to `$entry_file_name`
 * Add `"webpack": "webpack --watch"`
@@ -82,7 +111,7 @@ module.exports = {
   context: __dirname,
   entry: "./frontend/$entry_file_name",
   output: {
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js"
   },
   module: {
@@ -186,6 +215,24 @@ document.addEventListener("DOMContentLoaded", () => {
 export const uniqueId = function() {
   return new Date().getTime();
 };
+```
+
+### Making `$.ajax` request
+```js
+export const fetchSearchGiphys = (searchTerm) => (
+  $.ajax({
+    method: 'GET',
+    url: `http://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=dc6zaTOxFJmzC&limit=2`,
+  })
+);
+
+export const postUser = (user) => (
+  $.ajax({
+    url: '/api/users',
+    method: `POST`,
+    data: { user }
+  })
+);
 ```
 
 ___
