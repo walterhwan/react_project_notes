@@ -146,6 +146,15 @@ let anObj = { 100: 'a', 2: 'b', 7: 'c' };
 console.log(Object.keys(anObj)); // ['2', '7', '100']
 console.log(Object.values(anObj)); // ['a', 'b', 'c']
 ```
+`Object.values`
+```js
+const testPosts = {
+  1: { id: 1, title: "Title1" },
+  2: { id: 2, title: "Title2" },
+  3: { id: 3, title: "Title3" }
+};
+Object.values(testPosts) // [{ id: 1, title: "Title1" }, { id: 2, title: "Title2" }, { id: 3, title: "Title3" }], this would come in handy when building up some of selectors
+```
 `Object.assign`
 ```js
 //  it copy the values of all enumerable own properties from one or more source objects to a target object.
