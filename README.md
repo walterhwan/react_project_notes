@@ -37,16 +37,17 @@ When using Rails 5.1+, modify `application.js `
 # You can set variable in bash as such
 entry_file_name=entry.jsx
 # And use it by adding $ in front of it
-echo entry_file_name # => entry.jsx
+echo $entry_file_name # => entry.jsx
 ```
 ```bash
-mkdir frontend frontend/components frontend/actions frontend/reducers frontend/store frontend/util css
+mkdir frontend frontend/components frontend/actions frontend/reducers frontend/store frontend/util
 touch frontend/$entry_file_name
 ```
 For `index.html`
-```bash
+
+<!-- ```bash
 touch index.html css/reset.css css/style.css
-```
+``` -->
 ```html
 <!-- Add `script` to index.html -->
 <script src='./bundle.js'></script>
@@ -92,11 +93,10 @@ or you can append to the file
 #### Set up npm
 ```bash
 npm init -y
-npm install --save webpack@3.10.1 react react-dom react-router-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-env babel-preset-es2015 redux-logger lodash
+npm install --save webpack@3.10.1 react react-dom react-router-dom redux react-redux babel-core babel-loader babel-preset-react babel-preset-env redux-logger redux-thunk lodash
 ```
 
 Make changes to `package.json`
-* Change `"main": "app.jsx"` to `$entry_file_name`
 * Add `"webpack": "webpack --watch"`
 
 #### Set up Webpack
@@ -139,11 +139,12 @@ npm run webpack
 ___
 # Useful `Object#methods` and `lodash` methods TL;DR
 <!-- TODO: add use-cases and TL;DR -->
-`Object.keys`
+`Object.keys` and `Object.values`
 ```js
 // it returns An array of strings that represent all the enumerable properties of the given object.
 let anObj = { 100: 'a', 2: 'b', 7: 'c' };
-console.log(Object.keys(anObj)); // console: ['2', '7', '100']
+console.log(Object.keys(anObj)); // ['2', '7', '100']
+console.log(Object.values(anObj)); // ['a', 'b', 'c']
 ```
 `Object.assign`
 ```js
@@ -177,11 +178,17 @@ ___
 import { combineReducers } from 'redux';
 // required in store.js
 import { createStore, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
 // required in object_container.jsx
 import { connect } from 'react-redux';
 // required in root.jsx
 import { Provider } from 'react-redux';
+// react-router-dom doc https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom/docs/api
+import { HashRouter, Route, withRouter, Link, NavLink, Redirect, Switch } from 'react-router-dom';
+
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
+import merge from 'lodash/merge';
 ```
 
 
@@ -205,7 +212,8 @@ let configureStore = (preloadedState = {}) => (
 ```js
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
-  ReactDOM.render(<h1>Hello</h1>, root);
+  const store = configureStore();
+  ReactDOM.render(<Root store={store}>, root);
 })
 ```
 
@@ -226,7 +234,7 @@ export const fetchSearchGiphys = (searchTerm) => (
   })
 );
 
-export const postUser = (user) => (
+export const createUser = (user) => (
   $.ajax({
     url: '/api/users',
     method: `POST`,
@@ -235,9 +243,21 @@ export const postUser = (user) => (
 );
 ```
 
-# Authentication in React
+# Authentication
 
-Create `utils/session.js`
+Create User model
+
+Create User controller
+
+Create Session controller with `new`, `create` and `destroy`
+
+Write `application_controller.rb`
+
+Write `routes.rb`
+
+Create `api/user/show.json.jbuilder`
+
+Create `util/session.js`
 ```js
 export const postUser = (user) => ()
 export const postSession = (user) => ()
@@ -282,11 +302,3 @@ Create `components/session/signup.jsx`
 Create `components/session/login_containers.js`
 
 Create `components/session/login.jsx`
-
-
-___
-# Check-list when making an react component
-
-<!-- TODO: complete this section -->
-1. `import React from 'react';`
-- `export default Object`
